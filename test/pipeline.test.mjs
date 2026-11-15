@@ -6,7 +6,7 @@ import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 
 const repo = new URL('..',import.meta.url).pathname;
-const input = join(repo,'fixtures/snapshot.json');
+const input = process.env.RADAR_SNAPSHOT || join(repo,'../kit/token-radar-01-kit/input/snapshot.json');
 test('the entry produces a ranked reproducible board from the sealed snapshot',()=>{
   assert.ok(existsSync(join(repo,'main.ts')),'missing feature: main.ts entry pipeline');
   const out=mkdtempSync(join(tmpdir(),'radar-test-'));

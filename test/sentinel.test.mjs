@@ -5,10 +5,11 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 const root=import.meta.dirname+'/..';
+const input=process.env.RADAR_SNAPSHOT||root+'/../kit/token-radar-01-kit/input/snapshot.json';
 test('a negative market-cap sentinel renders as unavailable in the real-snapshot detail',()=>{
  const out=mkdtempSync(join(tmpdir(),'radar-sentinel-'));
  try {
-  const build=spawnSync(process.execPath,['main.ts','--input','fixtures/snapshot.json','--data-only'],{cwd:root,env:{...process.env,MAKEFUN_OUTPUT_DIR:out},encoding:'utf8'});
+  const build=spawnSync(process.execPath,['main.ts','--input',input,'--data-only'],{cwd:root,env:{...process.env,MAKEFUN_OUTPUT_DIR:out},encoding:'utf8'});
   assert.equal(build.status,0,build.stderr);
   const code=String.raw`
 import sys,threading,functools,http.server

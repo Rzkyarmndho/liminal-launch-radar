@@ -11,8 +11,10 @@ An offline launch-research terminal covering all 758 protocols in the sealed Def
 Requires Node.js 22.18+; no dependencies, build tools, credentials or network access.
 
 ```sh
+curl -fL https://make.fun/c/token-radar-01/kit -o ../radar-kit.tar.gz
+tar -xzf ../radar-kit.tar.gz -C ..
 mkdir -p out
-MAKEFUN_OUTPUT_DIR=out node main.ts --input fixtures/snapshot.json
+MAKEFUN_OUTPUT_DIR=out node main.ts --input ../token-radar-01-kit/input/snapshot.json
 python3 -m http.server 8765 --bind 127.0.0.1 --directory out
 ```
 
@@ -25,7 +27,7 @@ The runtime needs Node only. The full test suite also uses Python with Playwrigh
 ```sh
 python3 -m pip install playwright
 python3 -m playwright install chromium
-npm test
+RADAR_SNAPSHOT="$PWD/../token-radar-01-kit/input/snapshot.json" npm test
 ```
 
 The browser tests use explicitly synthetic fixtures for interaction controls, plus the real snapshot's negative-market-cap sentinel for a rendering regression. They never create a wallet, connect to a product, or spend funds.
@@ -46,7 +48,7 @@ The competition sandbox invokes `node main.ts` with `/input/snapshot.json` and w
 
 ## Provenance
 
-`fixtures/snapshot.json` is byte-identical to the competition input. Its own `source` names DefiLlama and the fetch timestamp. The program reads only its input, its source dashboard and the supplied screenshot files; it makes no external calls. Outputs are repeatable across two clean output directories.
+The sealed snapshot is supplied by the competition kit rather than committed as implementation code. Its own `source` names DefiLlama and the fetch timestamp. Downloading the public kit is a setup step only: once its input is on disk, the program reads only that input, its source dashboard and the supplied screenshot files; it makes no external calls. Outputs are repeatable across two clean output directories.
 
 ---
 
