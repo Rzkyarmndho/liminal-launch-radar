@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Liminal / Launch research</title><link rel="stylesheet" href="app.css"></head>
+<body>
+<a class="skip" href="#research">Skip to protocol table</a>
+<header class="masthead"><div class="brand">Liminal <span>/ Launch research</span></div><span class="offline">Offline snapshot · USD</span></header>
+<main>
+<section class="intro"><div><h1>Token launch radar</h1></div><div class="snapshot"><span>Snapshot date</span><strong id="as-of">Not loaded</strong></div></section>
+<div class="snapshot-bar"><span><strong id="protocols">n/a</strong> protocols</span><span><strong id="unrecorded">n/a</strong> without token recorded</span><span id="source">Local snapshot pending</span></div>
+<div class="workspace">
+<section id="research" aria-label="Research">
+<div class="toolbar"><div class="status-tabs" aria-label="Token status"><button data-status="unrecorded" aria-pressed="true">No token recorded</button><button data-status="recorded" aria-pressed="false">Token recorded</button><button data-status="all" aria-pressed="false">All</button></div><button id="export" class="quiet">Export CSV</button></div>
+<div class="filters"><label class="search">Search protocols<input id="search" type="search" placeholder="Name, symbol or chain…" ></label><label>Category<select id="category"><option value="">All categories</option></select></label><label>Chain<select id="chain"><option value="">All chains</option></select></label></div>
+<div class="view-bar"><span id="result-count" role="status">Opening local snapshot…</span><div class="sort"><label for="sort">Sort</label><select id="sort"><option value="value">Implied cap</option><option value="tvl">TVL</option><option value="growth">7d growth</option><option value="net">Scenario net</option></select><button id="direction" aria-label="Toggle sort direction" title="Descending">↓</button></div></div>
+<div class="active-bar"><label class="check"><input id="eligible" type="checkbox" checked>Eligible radar</label><div id="active" aria-label="Filters"></div><button id="reset" class="quiet">Reset filters</button></div>
+<div class="table-wrap"><table><caption class="sr">Select a protocol for its scenario and plan.</caption><thead><tr><th scope="col">Rank / protocol</th><th scope="col">TVL</th><th scope="col">7d growth</th><th scope="col">Implied cap range</th><th scope="col">Tracked age</th><th scope="col">Plan verdict</th></tr></thead><tbody id="rows"></tbody></table><p id="state" role="status">Opening local snapshot…</p></div>
+<div class="pagination"><button id="more">Show more</button></div>
+</section>
+<aside id="diagnostics" aria-label="Model diagnostics"></aside>
+</div>
+<footer><p>No token recorded ≠ confirmed tokenless. Tracked since is not tokenless age.</p><p>Conditional market-cap scenario, not forecast or airdrop promise. Gas costs are budgets, not live quotes.</p></footer>
+</main><dialog id="detail" aria-labelledby="detail-title"><header class="drawer-head"><div><h2 id="detail-title"></h2></div><button id="close" autofocus aria-label="Close protocol detail">Close</button></header><div id="detail-body"></div></dialog><script src="../data.js"></script><script type="module" src="app.js"></script>
+</body></html>
